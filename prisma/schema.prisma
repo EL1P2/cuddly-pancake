@@ -9,3 +9,13 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model Ticket {
+    id          String         @id      @default(auto())        @map("_id")         @db.ObjectId
+    name        String
+    position    String
+    office      String
+    age         Int
+    startDate   DateTime
+    salary      Int
+}
