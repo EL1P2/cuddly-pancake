@@ -1,4 +1,4 @@
-import { BaseModel } from '../../shared/entities/base.entity';
+import { BaseModel } from '../../core/entities/base.entity';
 
 export class Ticket extends BaseModel {
   name: string;

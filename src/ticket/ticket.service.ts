@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
-import { PrismaService } from '../shared/services/prisma.service';
+import { PrismaService } from '../core/services/prisma.service';
 
 @Injectable()
 export class TicketService {
@@ -15,18 +15,18 @@ export class TicketService {
     return this.prismaService.ticket.findMany({});
   }
 
-  findOne(id: string) {
+  findOne(id: number) {
     return this.prismaService.ticket.findUnique({ where: { id } });
   }
 
-  update(id: string, updateTicketDto: UpdateTicketDto) {
+  update(id: number, updateTicketDto: UpdateTicketDto) {
     return this.prismaService.ticket.update({
       where: { id },
       data: { ...updateTicketDto },
     });
   }
 
-  remove(id: string) {
+  remove(id: number) {
     return this.prismaService.ticket.delete({
       where: { id },
     });
