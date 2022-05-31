@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { PrismaService } from '../core/services/prisma.service';
+import { Paginate } from '../core/interfaces/paginate.interface';
+import { buildPaginationCriteria } from '../core/helpers/build-pagination-criteria.helper';
 
 @Injectable()
 export class TicketService {
@@ -11,8 +13,10 @@ export class TicketService {
     return this.prismaService.ticket.create({ data: { ...createTicketDto } });
   }
 
-  findAll() {
-    return this.prismaService.ticket.findMany({});
+  findAll(paginate: Partial<Paginate<CreateTicketDto>>) {
+    return this.prismaService.ticket.findMany({
+      ...buildPaginationCriteria(paginate),
+    });
   }
 
   findOne(id: number) {

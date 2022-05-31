@@ -1,16 +1,17 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { TicketService } from './ticket.service';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
+import { Paginate } from '../core/interfaces/paginate.interface';
 
 @Controller('tickets')
 export class TicketController {
@@ -22,8 +23,8 @@ export class TicketController {
   }
 
   @Get()
-  findAll() {
-    return this.ticketService.findAll();
+  findAll(@Query() queryParams: Partial<Paginate<CreateTicketDto>>) {
+    return this.ticketService.findAll(queryParams);
   }
 
   @Get(':id')
