@@ -1,6 +1,6 @@
 import { BaseModel } from '../../core/entities/base.entity';
 
-export class Ticket extends BaseModel {
+export class Employee extends BaseModel {
   name: string;
   position: string;
   office: string;

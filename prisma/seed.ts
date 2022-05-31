@@ -3,9 +3,9 @@ import { faker } from '@faker-js/faker';
 
 const prisma = new PrismaClient();
 
-async function seedTicket() {
+async function seedEmployee() {
   return new Promise<void>(async (resolve, reject) => {
-    const tickets = new Array(100).fill(null).map((item, i) => ({
+    const employees = new Array(100).fill(null).map((item, i) => ({
       id: i,
       name: `${faker.name.firstName()} ${faker.name.lastName()}`,
       position: faker.word.noun(),
@@ -14,12 +14,12 @@ async function seedTicket() {
       startDate: faker.date.past().toISOString(),
       salary: +faker.random.numeric(9),
     }));
-    for (const { id, ...ticket } of tickets) {
+    for (const { id, ...employee } of employees) {
       try {
-        await prisma.ticket.upsert({
+        await prisma.employee.upsert({
           where: { id },
-          create: { ...ticket },
-          update: { ...ticket },
+          create: { ...employee },
+          update: { ...employee },
         });
       } catch (e) {
         reject(e);
@@ -30,7 +30,7 @@ async function seedTicket() {
 }
 
 async function main() {
-  return Promise.all([seedTicket()]);
+  return Promise.all([seedEmployee()]);
 }
 
 main()
