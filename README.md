@@ -13,7 +13,7 @@ $ yarn install
 ### Running the database locally
 ```bash
 # Running postgres on docker locally
-$ docker run --name postgres -e POSTGRES_PASSWORD=bnloYXNpbmE= -p 5432:5432-d postgres
+$ docker run --name postgres -e POSTGRES_PASSWORD=bnloYXNpbmE= -p 5432:5432 -d postgres
 ```
 
 ### Running the development server
