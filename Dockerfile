@@ -2,15 +2,22 @@ FROM node:lts
 
 WORKDIR /usr/src/app
 
-RUN npm install -g yarn
+RUN npm install -g pm2 @nestjs/cli
 
-COPY package*.json ./
+COPY package*.json .
 
 RUN yarn install
 
-RUN yarn build
+COPY ecosystem.config.js .
 
 COPY . .
 
-EXPOSE 8080
+RUN ls -l
+
+RUN yarn build
+
+EXPOSE 3000
+
+CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
+
 
