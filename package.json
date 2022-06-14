@@ -22,7 +22,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prisma:generate-client": "prisma generate",
     "prisma:deploy": "prisma migrate dev",
-    "prisma:deploy:prod": "prisma migrate reset"
+    "prisma:deploy:prod": "prisma migrate reset",
+    "archive": "git archive -v -o cuddly-pancake.zip --format=zip HEAD"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
